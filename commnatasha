@@ -1,0 +1,337 @@
+
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import time
+from selenium.webdriver.support.ui import Select
+import random
+from selenium.common.exceptions import NoSuchElementException
+import undetected_chromedriver.v2 as uc
+
+
+print('write 1 to delete')
+choice = input()
+keys = Keys()
+options = Options()
+
+#options.add_argument("user-data-dir=C:\\Users\\Jukarick\\AppData\\Local\\Mozilla\\Firefox\\Profiles\\cozxdzic.Ebashit")
+#profile = webdriver.FirefoxProfile("C:\\Users\\Jukarick\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\cozxdzic.Ebashit")
+#driver = webdriver.Firefox(profile, executable_path="C:\\Program Files\\geckodriver.exe")
+
+options.add_argument("user-data-dir=E:\\chromesss\\natasha")
+driver = webdriver.Chrome(executable_path="C:\\Program Files\\chromedriver.exe", options=options)
+
+
+driver.get('https://ych.commishes.com/')
+
+
+time.sleep(10)
+global datetoday
+datetoday = time.strftime("%d%m")
+
+def first_nsfw_info():
+    driver.get('https://ych.commishes.com/auction/create/')
+    time.sleep(3)
+    time.sleep(2)
+    driver.find_element(by=By.XPATH, value="//*[@id='r2']").click()
+    time.sleep(5)
+    selection = driver.find_element(by=By.XPATH, value='// *[ @ id = "category"] / select')
+    selection.click()
+    time.sleep(3)
+    selection.send_keys(keys.DOWN, keys.DOWN, keys.DOWN, keys.DOWN, keys.ENTER)
+    time.sleep(7)
+
+def second_info():
+
+    time.sleep(1)
+    driver.find_element(by=By.XPATH, value='//*[@id="main"]/main/section/form/div[15]/div/div[1]/button').click()
+    time.sleep(3)
+    driver.find_element(by=By.XPATH, value="//input[@value='24']").click()
+    time.sleep(1)
+    driver.find_element(by=By.XPATH, value="//button[@class='button']").click()
+    time.sleep(1)
+
+def first_sfw_info():
+    driver.get('https://ych.commishes.com/auction/create/')
+    time.sleep(3)
+    time.sleep(2)
+    driver.find_element(by=By.XPATH, value="//*[@id='r0']").click()
+    time.sleep(5)
+    selection = driver.find_element(by=By.XPATH, value='// *[ @ id = "category"] / select')
+    selection.click()
+    time.sleep(3)
+    selection.send_keys(keys.DOWN, keys.DOWN, keys.DOWN, keys.DOWN, keys.ENTER)
+    time.sleep(7)
+
+def first_sfw_furry_info():
+    driver.get('https://ych.commishes.com/auction/create/')
+    time.sleep(3)
+    time.sleep(2)
+    driver.find_element(by=By.XPATH, value="//*[@id='r0']").click()
+    time.sleep(5)
+    selection = driver.find_element(by=By.XPATH, value='// *[ @ id = "category"] / select')
+    selection.click()
+    time.sleep(3)
+    selection.send_keys(keys.DOWN, keys.DOWN, keys.ENTER)
+    time.sleep(7)
+
+def first_nsfw_furry_info():
+    driver.get('https://ych.commishes.com/auction/create/')
+    time.sleep(3)
+    time.sleep(2)
+    driver.find_element(by=By.XPATH, value="//*[@id='r2']").click()
+    time.sleep(5)
+    selection = driver.find_element(by=By.XPATH, value='// *[ @ id = "category"] / select')
+    selection.click()
+    time.sleep(3)
+    selection.send_keys(keys.DOWN, keys.DOWN, keys.ENTER)
+    time.sleep(7)
+
+def one():
+    global datetoday
+    first_sfw_info()
+    file1 = "C:\\Users\\Jukarick\\Downloads\\кайфучьки\\kek\\natasha\\1(1).jpg"
+    file2 = "C:\\Users\\Jukarick\\Downloads\\кайфучьки\\kek\\natasha\\1(2).jpg"
+    filenumb = random.randint(1, 2)
+    if filenumb == 1:
+        file = file1
+    if filenumb == 2:
+        file = file2
+    driver.find_element(by=By.XPATH, value="//input[@type='file']").send_keys(file)
+    time.sleep(2)
+    #driver.find_element(by=By.XPATH, value="//input[@name='title']").send_keys(f'{datetoday} YCH latex $35')
+    driver.find_element(by=By.XPATH, value="//input[@name='title']").send_keys(f'Portrait commission')
+    time.sleep(1)
+    driver.find_element(by=By.XPATH, value="//input[@name='subtitle']").send_keys('Fixed price')
+
+    time.sleep(1)
+    driver.find_element(by=By.XPATH, value="//textarea[@name='description']").send_keys('- Fixed price $25 for '
+    'full colored full shaded picture \n- Any gender\n- Any pose\n- Any clothes\n- Simple background\n'
+    '- Add complicated background is discussable (from +$20 to +$50)\n\n- Prepayment\n'
+    '- 5-15 days deadline')
+
+    time.sleep(1)
+    second_info()
+    driver.find_element(by=By.XPATH, value="//input[@name='startingbid']").send_keys(keys.DELETE,
+    keys.DELETE, keys.DELETE, keys.DELETE, '25')
+    time.sleep(1)
+    driver.find_element(by=By.XPATH, value="//input[@type='submit']").click()
+    print("One posted at ", time.strftime("%X"))
+
+def two():
+    global datetoday
+    first_sfw_info()
+    file = "C:\\Users\\Jukarick\\Downloads\\кайфучьки\\kek\\natasha\\2.png"
+    driver.find_element(by=By.XPATH, value="//input[@type='file']").send_keys(file)
+    time.sleep(2)
+    # driver.find_element(by=By.XPATH, value="//input[@name='title']").send_keys(f'{datetoday} YCH latex $35')
+    driver.find_element(by=By.XPATH, value="//input[@name='title']").send_keys(f'Mirror YCH')
+    time.sleep(1)
+    driver.find_element(by=By.XPATH, value="//input[@name='subtitle']").send_keys('Your character looking in mirror')
+
+    time.sleep(1)
+    driver.find_element(by=By.XPATH, value="//textarea[@name='description']").send_keys('- Fixed price $25 for '
+    'full colored full shaded picture \n- Any gender\n- Any pose\n- Any clothes\n- Simple background\n'
+    '- Add complicated background is discussable (from +$20 to +$50)\n\n- Prepayment\n'
+    '- 5-15 days deadline')
+
+    time.sleep(1)
+    second_info()
+    driver.find_element(by=By.XPATH, value="//input[@name='startingbid']").send_keys(keys.DELETE,
+    keys.DELETE, keys.DELETE, keys.DELETE, '25')
+    time.sleep(1)
+    driver.find_element(by=By.XPATH, value="//input[@type='submit']").click()
+    print("Two posted at ", time.strftime("%X"))
+
+def three():
+    global datetoday
+    first_sfw_info()
+    file1 = "C:\\Users\\Jukarick\\Downloads\\кайфучьки\\kek\\natasha\\3.jpg"
+    file2 = "C:\\Users\\Jukarick\\Downloads\\кайфучьки\\kek\\natasha\\3(1).png"
+    filenumb = random.randint(1, 2)
+    if filenumb == 1:
+        file = file1
+    if filenumb == 2:
+        file = file2
+    driver.find_element(by=By.XPATH, value="//input[@type='file']").send_keys(file)
+    time.sleep(2)
+    # driver.find_element(by=By.XPATH, value="//input[@name='title']").send_keys(f'{datetoday} YCH latex $35')
+    driver.find_element(by=By.XPATH, value="//input[@name='title']").send_keys(f'Half body commission')
+    time.sleep(1)
+    driver.find_element(by=By.XPATH, value="//input[@name='subtitle']").send_keys('Fixed price')
+
+    time.sleep(1)
+    driver.find_element(by=By.XPATH, value="//textarea[@name='description']").send_keys('- Fixed price $35 for '
+    'full colored full shaded picture \n- Any gender\n- Any pose\n- Any clothes\n- Simple background\n'
+    '- Add complicated background is discussable (from +$20 to +$50)\n\n- Prepayment\n'
+    '- 5-15 days deadline')
+
+    time.sleep(1)
+    second_info()
+    driver.find_element(by=By.XPATH, value="//input[@name='startingbid']").send_keys(keys.DELETE,
+    keys.DELETE, keys.DELETE, keys.DELETE, '35')
+    time.sleep(1)
+    driver.find_element(by=By.XPATH, value="//input[@type='submit']").click()
+    print("Three posted at ", time.strftime("%X"))
+
+
+
+def four():
+    global datetoday
+    first_sfw_info()
+    file = "C:\\Users\\Jukarick\\Downloads\\кайфучьки\\kek\\natasha\\4.jpg"
+    driver.find_element(by=By.XPATH, value="//input[@type='file']").send_keys(file)
+    time.sleep(2)
+    # driver.find_element(by=By.XPATH, value="//input[@name='title']").send_keys(f'{datetoday} YCH latex $35')
+    driver.find_element(by=By.XPATH, value="//input[@name='title']").send_keys(f'Full body commission')
+    time.sleep(1)
+    driver.find_element(by=By.XPATH, value="//input[@name='subtitle']").send_keys('Fixed price')
+
+    time.sleep(1)
+    driver.find_element(by=By.XPATH, value="//textarea[@name='description']").send_keys('- Fixed price $50 for '
+    'full colored full shaded picture \n- Any gender\n- Any pose\n- Any clothes\n- Simple background\n'
+    '- Add complicated background is discussable (from +$20 to +$50)\n\n- Prepayment\n'
+    '- 5-15 days deadline')
+
+    time.sleep(1)
+    second_info()
+    driver.find_element(by=By.XPATH, value="//input[@name='startingbid']").send_keys(keys.DELETE,
+    keys.DELETE, keys.DELETE, keys.DELETE, '50')
+    time.sleep(1)
+    driver.find_element(by=By.XPATH, value="//input[@type='submit']").click()
+    print("Four posted at ", time.strftime("%X"))
+
+def five():
+    global datetoday
+    first_sfw_furry_info()
+    file1 = "C:\\Users\\Jukarick\\Downloads\\кайфучьки\\kek\\natasha\\5(1).jpg"
+    file2 = "C:\\Users\\Jukarick\\Downloads\\кайфучьки\\kek\\natasha\\5(2).jpg"
+    file3 = "C:\\Users\\Jukarick\\Downloads\\кайфучьки\\kek\\natasha\\5(3).jpg"
+    filenumb = random.randint(1, 3)
+    if filenumb == 1:
+        file = file1
+    if filenumb == 2:
+        file = file2
+    if filenumb == 3:
+        file = file3
+    driver.find_element(by=By.XPATH, value="//input[@type='file']").send_keys(file)
+    time.sleep(2)
+    # driver.find_element(by=By.XPATH, value="//input[@name='title']").send_keys(f'{datetoday} YCH latex $35')
+    driver.find_element(by=By.XPATH, value="//input[@name='title']").send_keys(f'Half body furry commission')
+    time.sleep(1)
+    driver.find_element(by=By.XPATH, value="//input[@name='subtitle']").send_keys('Fixed price')
+
+    time.sleep(1)
+    driver.find_element(by=By.XPATH, value="//textarea[@name='description']").send_keys('- Fixed price $25 for '
+    'full colored full shaded picture \n- Any gender\n- Any pose\n- Any clothes\n- Simple background\n'
+    '- Add complicated background is discussable (from +$20 to +$50)\n\n- Prepayment\n'
+    '- 5-15 days deadline')
+
+    time.sleep(1)
+    second_info()
+    driver.find_element(by=By.XPATH, value="//input[@name='startingbid']").send_keys(keys.DELETE,
+    keys.DELETE, keys.DELETE, keys.DELETE, '25')
+    time.sleep(1)
+    driver.find_element(by=By.XPATH, value="//input[@type='submit']").click()
+    print("Five posted at ", time.strftime("%X"))
+
+def six():
+    global datetoday
+    first_nsfw_furry_info()
+    file = "C:\\Users\\Jukarick\\Downloads\\кайфучьки\\kek\\natasha\\6.jpg"
+
+    driver.find_element(by=By.XPATH, value="//input[@type='file']").send_keys(file)
+    time.sleep(2)
+    # driver.find_element(by=By.XPATH, value="//input[@name='title']").send_keys(f'{datetoday} YCH latex $35')
+    driver.find_element(by=By.XPATH, value="//input[@name='title']").send_keys(f'Hot couple')
+    time.sleep(1)
+    driver.find_element(by=By.XPATH, value="//input[@name='subtitle']").send_keys('Two characters')
+
+    time.sleep(1)
+    driver.find_element(by=By.XPATH, value="//textarea[@name='description']").send_keys('- Fixed price $60 for '
+    'full colored full shaded picture \n- Any genders\n'
+    '- Changing background is discussable (from +$20 to +$50)\n\n- Prepayment\n'
+    '- 15-20 days deadline\n- Fixed price')
+
+    time.sleep(1)
+    second_info()
+    driver.find_element(by=By.XPATH, value="//input[@name='startingbid']").send_keys(keys.DELETE,
+    keys.DELETE, keys.DELETE, keys.DELETE, '60')
+    time.sleep(1)
+    driver.find_element(by=By.XPATH, value="//input[@type='submit']").click()
+    print("Five posted at ", time.strftime("%X"))
+
+def seven():
+    global datetoday
+    first_sfw_furry_info()
+    file1 = "C:\\Users\\Jukarick\\Downloads\\кайфучьки\\kek\\natasha\\5(1).jpg"
+    file2 = "C:\\Users\\Jukarick\\Downloads\\кайфучьки\\kek\\natasha\\5(2).jpg"
+    file3 = "C:\\Users\\Jukarick\\Downloads\\кайфучьки\\kek\\natasha\\5(3).jpg"
+    filenumb = random.randint(1, 3)
+    if filenumb == 1:
+        file = file1
+    if filenumb == 2:
+        file = file2
+    if filenumb == 3:
+        file = file3
+    driver.find_element(by=By.XPATH, value="//input[@type='file']").send_keys(file)
+    time.sleep(2)
+    # driver.find_element(by=By.XPATH, value="//input[@name='title']").send_keys(f'{datetoday} YCH latex $35')
+    driver.find_element(by=By.XPATH, value="//input[@name='title']").send_keys(f'Half body furry commission')
+    time.sleep(1)
+    driver.find_element(by=By.XPATH, value="//input[@name='subtitle']").send_keys('Fixed price')
+
+    time.sleep(1)
+    driver.find_element(by=By.XPATH, value="//textarea[@name='description']").send_keys('- Fixed price $25 for '
+    'full colored full shaded picture \n- Any gender\n- Any pose\n- Any clothes\n- Simple background\n'
+    '- Add complicated background is discussable (from +$20 to +$50)\n\n- Prepayment\n'
+    '- 5-15 days deadline')
+
+    time.sleep(1)
+    second_info()
+    driver.find_element(by=By.XPATH, value="//input[@name='startingbid']").send_keys(keys.DELETE,
+    keys.DELETE, keys.DELETE, keys.DELETE, '25')
+    time.sleep(1)
+    driver.find_element(by=By.XPATH, value="//input[@type='submit']").click()
+    print("Five posted at ", time.strftime("%X"))    
+
+def deleting():
+    print('deleting!')
+    for i in range(2):
+        try:
+            driver.get('https://ych.commishes.com/account/')
+            print('to4no deleting')
+            # driver.find_element_by_partial_link_text('End').click()
+            # driver.find_element_by_partial_link_text('End').click()
+            driver.find_element(by=By.XPATH, value='//*[@id="main"]/div/div[2]/div[2]/div/div[1]/div[1]/div/div[4]/div/div[1]').click()
+            time.sleep(15)
+            driver.find_element(by=By.PARTIAL_LINK_TEXT, value='End').click()
+            #driver.find_element(by=By.PARTIAL_LINK_TEXT, value='End').click()
+            time.sleep(1)
+        except: Exception
+
+def all():
+    time_delay = 50
+    one()
+    time.sleep(time_delay)
+    two()
+    time.sleep(time_delay)
+    three()
+    time.sleep(time_delay)
+    four()
+    time.sleep(time_delay)
+    five()
+    time.sleep(time_delay)
+    six()
+
+try:
+    if int(choice) == 1:
+        deleting()
+        all()
+except ValueError:
+    all()
+
+driver.quit()
